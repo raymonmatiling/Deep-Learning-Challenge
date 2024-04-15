@@ -1,44 +1,51 @@
-# Step 4: Writing a Report on the Neural Network Model - Alphabet Soup Charity Analysis Report
-For this part of the assignment, you’ll write a report on the performance of the deep learning model you created for Alphabet Soup.
+# Alphabet Soup Deep Learning Model Performance Report
 
-The report should contain the following:
+## Overview of the Analysis
 
-## Q1- Overview of the analysis: Explain the purpose of this analysis.
+The purpose of this analysis was to develop a deep learning model using TensorFlow and Keras to predict the success of funding applicants for Alphabet Soup based on various input features.
 
-The nonprofit foundation Alphabet Soup wants a tool that can help it select the select the applicants for funding wth the best chance of success in their ventures. Using machine learning and neural networks, we use the features in the provided dataset to create a binary classifier that can predict whether applicants will be successful if funded by Alphabet Soup.
+## Results
 
-## Q2- Results: Using bulleted lists and images to support your answers, address the following questions:
+### Data Preprocessing
 
-Data Preprocessing
+**Target Variable**: The target variable for the model is IS_SUCCESSFUL, which indicates whether the funding application was successful.
 
-What variable(s) are the target(s) for your model?
+**Features**: The features for the model include APPLICATION_TYPE, AFFILIATION, CLASSIFICATION, USE_CASE, ORGANIZATION, STATUS, INCOME_AMT, and SPECIAL_CONSIDERATIONS.
 
-Our target is the "y" which is the "IS_SUCCESSFUL" column
+**Removed Variables**: Variables EIN and NAME were removed from the input data as they were neither targets nor features.
 
-What variable(s) are the features for your model?
+### Compiling, Training, and Evaluating the Model
 
-Our features is the "X" which is everything but the "IS_SUCCESSFUL" column as: "APPLICATION_TYPE" , "AFFILIATION", "CLASSIFICATION", "USE_CASE", "ORGANIZATION", "STATUS", "INCOME_AMT", "SPECIAL_CONSIDERATIONS", "ASK_AMT"
+**Neurons, Layers, and Activation Functions**:
+For the first model (AlphabetSoupCharity.ipynb), two hidden layers with 80 and 30 neurons were selected, respectively, using the ReLU activation function.
+For the second model (AlphabetSoupCharity_Optimization.ipynb), the complexity was increased with four hidden layers having 100, 50, 20, and 10 neurons, respectively, using the ReLU activation function. The output layer for both models used the sigmoid activation function.
 
-What variable(s) should be removed from the input data because they are neither targets nor features?
+**Model Performance**:
+The first model achieved an accuracy of 72.7%.
+The second model achieved an accuracy of 72.4%.
 
-"EIN & "NAME" were removed from variables, since they are neither targets nor features.
+**Target Model Performance**: While the target model performance of over 75% accuracy was not achieved for either model, with the first model achieving an accuracy of 72.7% and the second model achieving 72.4%, they provide a good starting point for further optimization.
 
-Compiling, Training, and Evaluating the Model
+**Steps Taken** :
 
-How many neurons, layers, and activation functions did you select for your neural network model, and why?
+Adjusting Binning:
+Increased the cutoff value for binning rare occurrences in columns from 500 to 1000 in the second model, which did not significantly improve model accuracy.
+Dropping Columns:
+Explored dropping more or fewer columns from the input data, but the model's accuracy remained lower or similar.
+Other Attempts:
+Increased the number of hidden layers and neurons in the second model.
+Used different activation functions for the hidden layers.
+Increased the number of epochs to 120 and 170 in the second model.
 
-I had 3 tries trying to get to best & higest accuracy
+**Steps to Increase Performance**:
+Increased complexity with additional hidden layers and neurons in the second model.
+Adjusted binning for rare occurrences in columns.
+Increased the number of epochs to 200 in the second model.
 
-1st try: 2 hidden layers & an outer layer, layer 1: 10 neurons, tanh activation, layer 2: 20 neurons, sigmoid activations, and Outer layer: 1 unit, sigmoid activation & adam optimizers for complier.
+## Summary
 
-2nd try: 3 hidden layers & an outer layer, layer 1: 15 neurons, tanh activation, layer 2: 25 neurons, sigmoid activations, layer 3: 25 neurons, relu activations, and Outer layer: 1 unit, sigmoid & adam optimizers for complier.
+The deep learning models developed for Alphabet Soup aimed to predict the success of funding applicants based on various input features. The first model (AlphabetSoupCharity.ipynb) used two hidden layers with 80 and 30 neurons, achieving an accuracy of 72.7%. The second model (AlphabetSoupCharity_Optimization.ipynb) increased complexity with four hidden layers having 100, 50, 20, and 10 neurons, but achieved a slightly lower accuracy of 72.4%.
 
-3rd try: 3 hidden layers & an outer layer, layer 1: 30 neurons, tanh activation, layer 2: 25 neurons, sigmoid activations, layer 3: 20 neurons, sigmoid activations, and Outer layer: 1 unit, sigmoid & adam optimizers for complier.
+Despite not achieving the target model performance of over 75% accuracy, both models provided valuable insights. Adjustments were made in the second model, including increasing the cutoff value for binning rare occurrences, exploring different neural network architectures, and increasing the number of epochs to 200. These attempts aimed to improve model accuracy but did not yield significant improvements.
 
-Were you able to achieve the target model performance? The best I got accuracy 0.7286
-
-What steps did you take in your attempts to increase model performance? after cleanining & removing none features neither targets, & splitting used the deep neural net & trying diffrent number of layers, activations, optimizers & epochs
-
-## Q3- Summary: Summarize the overall results of the deep learning model. Include a recommendation for how a different model could solve this classification problem, and then explain your recommendation.
-
-Unfortunately the diffrences between all 3 tries was not major unless maybe adding 5 layers & 100's of neurels but that will kill my processor that's why didn't go that far, just did the 2 to 3 layers & between 10-30 neurels on each layers but noticed sigmoid activation is the best for this module.
+Moving forward, further optimization could involve fine-tuning hyperparameters, exploring more complex neural network architectures, and applying regularization techniques. Overall, while the models showed moderate success, there is room for improvement to enhance their predictive performance for funding application outcomes.
